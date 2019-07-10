@@ -2,10 +2,11 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
+    render json: users
   end
 
   def show
-    user = User.find_by(id: parms[:id])
+    user = User.find_by(id: params[:id])
     if user
       render json: user, include: [:user_comments, { 
         :user_comments => { 
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(username: params[:username], password: params[:password])
+    user = User.new(username: params[:username], password: params[:password], comment: params[:comment])
     if user.save
       render json: user
     else

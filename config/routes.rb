@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :users
   resources :comments
   
+  # Custom Routes
+  post '/signin', to: 'users#signin'
+  get '/validate', to: 'users#validate'
+  
 end
